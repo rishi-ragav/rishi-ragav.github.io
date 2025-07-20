@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishi Ragav V - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #e5e7eb;
+        }
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .section {
+            padding: 8rem 2rem;
+            border-bottom: 1px solid #374151;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .card {
+            background-color: #1f2937;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #374151;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #4b5563;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 2rem;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 4rem;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 4rem;
+            text-align: left;
+        }
+        .timeline-content {
+             background-color: #1f2937;
+             padding: 1.5rem;
+             border-radius: 0.5rem;
+             border: 1px solid #374151;
+        }
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            top: calc(50% - 8px);
+            width: 16px;
+            height: 16px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            border: 2px solid #111827;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -8px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -8px;
+        }
+        .skill-bar {
+            background-color: #374151;
+            border-radius: 0.25rem;
+            overflow: hidden;
+            height: 1rem;
+        }
+        .skill-level {
+            background-color: #3b82f6;
+            height: 100%;
+            border-radius: 0.25rem;
+            transition: width 2s ease-in-out;
+            width: 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <canvas id="bg-canvas"></canvas>
+
+    <header class="fixed top-0 left-0 right-0 z-10 bg-gray-900 bg-opacity-80 backdrop-blur-md shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-white">Rishi Ragav V</h1>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-300 hover:text-blue-400 transition">About</a>
+                <a href="#experience" class="text-gray-300 hover:text-blue-400 transition">Experience</a>
+                <a href="#skills" class="text-gray-300 hover:text-blue-400 transition">Skills</a>
+                <a href="#projects" class="text-gray-300 hover:text-blue-400 transition">Projects</a>
+                <a href="#contact" class="text-gray-300 hover:text-blue-400 transition">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gray-300 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">About</a>
+            <a href="#experience" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Experience</a>
+            <a href="#skills" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Skills</a>
+            <a href="#projects" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Projects</a>
+            <a href="#contact" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="h-screen flex items-center justify-center text-center">
+            <div class="z-0">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4 animate-fade-in-down">Rishi Ragav V</h1>
+                <p class="text-xl md:text-2xl text-blue-400 animate-fade-in-up">B.Tech CSE - AI & Machine Learning Student</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8">About Me</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-400">
+                    A passionate and driven B.Tech student specializing in Artificial Intelligence and Machine Learning at Presidency University. With a strong foundation in computer science and hands-on experience in various technical domains, I am eager to contribute to innovative projects and leverage technology to solve real-world problems. My experience as a Microsoft Student Ambassador and in leadership roles has honed my communication, leadership, and community-building skills.
+                </p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12">Volunteering Experience</h2>
+                <div class="relative timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3 class="text-xl font-bold">Microsoft Student Ambassador</h3>
+                            <p class="text-sm text-gray-400 mb-2">2023 - 2024 | Bengaluru, India</p>
+                            <ul class="list-disc list-inside text-gray-400 text-left">
+                                <li>Connected with a global network of student leaders, impacting over 500 students.</li>
+                                <li>Organized 10+ workshops on emerging technologies for 300+ peers.</li>
+                                <li>Linked students with 20+ industry professionals.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3 class="text-xl font-bold">Professional Development Director</h3>
+                            <p class="text-sm text-gray-400 mb-2">Rotaract Club, Presidency University | 2022 - 2023</p>
+                             <ul class="list-disc list-inside text-gray-400 text-left">
+                                <li>Led growth initiatives, increasing outreach by 25%.</li>
+                                <li>Organized 15+ workshops, enhancing skill engagement by 30%.</li>
+                                <li>Mentored 50+ members in leadership and technical skills.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3 class="text-xl font-bold">Club Head</h3>
+                            <p class="text-sm text-gray-400 mb-2">OMEGA Club, Presidency University | 2022 - 2023</p>
+                            <ul class="list-disc list-inside text-gray-400 text-left">
+                                <li>Oversaw a group of 20 people to accomplish club goals.</li>
+                                <li>Held workshops that raised participants' competency by 30%.</li>
+                                <li>Improved members' coding abilities by 50% through mentoring.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12">Skills</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">Programming</h3>
+                        <div class="mb-4">
+                            <p class="mb-1">C / C++</p>
+                            <div class="skill-bar"><div class="skill-level" data-level="90%"></div></div>
+                        </div>
+                        <div class="mb-4">
+                            <p class="mb-1">Java</p>
+                            <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+                        </div>
+                        <div class="mb-4">
+                            <p class="mb-1">Python</p>
+                            <div class="skill-bar"><div class="skill-level" data-level="95%"></div></div>
+                        </div>
+                         <div class="mb-4">
+                            <p class="mb-1">MySQL</p>
+                            <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">Technical Skills</h3>
+                        <div class="mb-4">
+                            <p class="mb-1">Machine Learning & Deep Learning</p>
+                            <div class="skill-bar"><div class="skill-level" data-level="90%"></div></div>
+                        </div>
+                        <div class="mb-4">
+                            <p class="mb-1">Computer Vision</p>
+                            <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
+                        </div>
+                        <div class="mb-4">
+                            <p class="mb-1">Reinforcement Learning</p>
+                            <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
+                        </div>
+                        <div class="mb-4">
+                            <p class="mb-1">Generative AI</p>
+                            <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12">Projects & Publications</h2>
+                <div class="grid md:grid-cols-1 gap-8">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-2">Sentinel: Intelligent Multi-Camera Face Detection, Recognition and Tracking System</h3>
+                        <p class="text-sm text-blue-400 mb-4">Capstone Project & Publication in IJCRT</p>
+                        <p class="text-gray-400">
+                            This project presents a machine learning-based approach for robust face recognition and tracking across multiple camera feeds. It involves developing and fine-tuning an AI model using Computer Vision and Deep Learning techniques, creating autonomous pipelines for face tracking, and conducting comprehensive experiments to maximize the model's accuracy and performance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Certifications Section -->
+        <section id="certifications" class="section">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12">Certifications</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card text-center">
+                        <h3 class="text-xl font-bold">Software Development</h3>
+                        <p class="text-gray-400">by Microsoft and LinkedIn</p>
+                    </div>
+                    <div class="card text-center">
+                        <h3 class="text-xl font-bold">Qiskit Global Summer School</h3>
+                         <p class="text-gray-400">Quantum Excellence</p>
+                    </div>
+                    <div class="card text-center">
+                        <h3 class="text-xl font-bold">IBM Quantum Challenge</h3>
+                         <p class="text-gray-400">Spring 2023 Achievement</p>
+                    </div>
+                    <div class="card text-center">
+                        <h3 class="text-xl font-bold">Applied Machine Learning</h3>
+                    </div>
+                    <div class="card text-center">
+                        <h3 class="text-xl font-bold">NLP with Python</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8">Get In Touch</h2>
+                <p class="text-lg text-gray-400 mb-8">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an amazing team. Feel free to reach out!</p>
+                <a href="mailto:rishiragav1@gmail.com" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition text-lg">
+                    Say Hello
+                </a>
+                 <div class="flex justify-center space-x-6 mt-8">
+                    <a href="https://rishi-ragav.github.io" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 bg-gray-900">
+        <div class="container mx-auto text-center text-gray-400">
+            <p>&copy; 2024 Rishi Ragav V. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Background Animation with Three.js
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const particlesGeometry = new THREE.BufferGeometry;
+        const particlesCnt = 5000;
+        const posArray = new Float32Array(particlesCnt * 3);
+
+        for(let i = 0; i < particlesCnt * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 5;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({ size: 0.005, color: 0x3b82f6 });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+        camera.position.z = 2;
+
+        const clock = new THREE.Clock();
+        const animate = () => {
+            const elapsedTime = clock.getElapsedTime();
+            particlesMesh.rotation.y = -0.1 * elapsedTime;
+            particlesMesh.rotation.x = -0.1 * elapsedTime;
+            renderer.render(scene, camera);
+            window.requestAnimationFrame(animate);
+        };
+        animate();
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if(mobileMenu.classList.contains('hidden') === false){
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // On-scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    if(entry.target.id === 'skills'){
+                       animateSkills();
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.add('opacity-0');
+            observer.observe(section);
+        });
+        
+        function animateSkills() {
+            document.querySelectorAll('.skill-level').forEach(skill => {
+                const level = skill.getAttribute('data-level');
+                skill.style.width = level;
+            });
+        }
+
+        // Add simple fade-in keyframes
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fade-in-down {
+                0% { opacity: 0; transform: translateY(-20px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fade-in-up {
+                0% { opacity: 0; transform: translateY(20px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fade-in {
+                0% { opacity: 0; }
+                100% { opacity: 1; }
+            }
+            .animate-fade-in-down { animation: fade-in-down 1s ease-out forwards; }
+            .animate-fade-in-up { animation: fade-in-up 1s ease-out 0.5s forwards; }
+            .animate-fade-in { animation: fade-in 1s ease-out forwards; opacity: 1 !important; }
+            .opacity-0 { opacity: 0; }
+        `;
+        document.head.appendChild(style);
+
+    </script>
+</body>
+</html>
