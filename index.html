@@ -22,7 +22,7 @@
             z-index: -1;
         }
         .section {
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
             border-bottom: 1px solid #374151;
         }
         .section:last-child {
@@ -99,84 +99,6 @@
             transition: width 2s ease-in-out;
             width: 0;
         }
-        /* AI Chat Styles */
-        #chat-container {
-            max-width: 800px;
-            margin: auto;
-            background-color: #1f2937;
-            border-radius: 0.75rem;
-            overflow: hidden;
-            border: 1px solid #374151;
-        }
-        #chat-window {
-            height: 400px;
-            overflow-y: auto;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .chat-bubble {
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            max-width: 80%;
-        }
-        .user-bubble {
-            background-color: #3b82f6;
-            color: white;
-            align-self: flex-end;
-        }
-        .ai-bubble {
-            background-color: #374151;
-            color: #e5e7eb;
-            align-self: flex-start;
-        }
-        #chat-input-container {
-            display: flex;
-            padding: 1rem;
-            border-top: 1px solid #374151;
-        }
-        #chat-input {
-            flex-grow: 1;
-            background-color: #374151;
-            border: none;
-            color: white;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            margin-right: 1rem;
-        }
-        #chat-input:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px #3b82f6;
-        }
-        #send-button {
-            background-color: #3b82f6;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        #send-button:hover {
-            background-color: #2563eb;
-        }
-         #send-button:disabled {
-            background-color: #4b5563;
-            cursor: not-allowed;
-        }
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3b82f6;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body class="antialiased">
@@ -190,7 +112,6 @@
                 <a href="#experience" class="text-gray-300 hover:text-blue-400 transition">Experience</a>
                 <a href="#skills" class="text-gray-300 hover:text-blue-400 transition">Skills</a>
                 <a href="#projects" class="text-gray-300 hover:text-blue-400 transition">Projects</a>
-                <a href="#ai-chat" class="text-gray-300 hover:text-blue-400 transition">AI Chat</a>
                 <a href="#contact" class="text-gray-300 hover:text-blue-400 transition">Contact</a>
             </nav>
             <button id="mobile-menu-button" class="md:hidden text-gray-300 focus:outline-none">
@@ -202,7 +123,6 @@
             <a href="#experience" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Experience</a>
             <a href="#skills" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Skills</a>
             <a href="#projects" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Projects</a>
-             <a href="#ai-chat" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">AI Chat</a>
             <a href="#contact" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Contact</a>
         </div>
     </header>
@@ -361,26 +281,6 @@
             </div>
         </section>
 
-        <!-- AI Chat Section -->
-        <section id="ai-chat" class="section">
-             <div class="container mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-12">Ask Me Anything</h2>
-                <p class="max-w-3xl mx-auto text-center text-lg text-gray-400 mb-8">
-                    Have a question about my skills, projects, or experience? Ask my AI assistant! It's powered by Google's Gemini model and has been trained on my resume.
-                </p>
-                <div id="chat-container">
-                    <div id="chat-window">
-                       <!-- Chat messages will be appended here -->
-                    </div>
-                    <div id="chat-input-container">
-                        <input type="text" id="chat-input" placeholder="Type your question here...">
-                        <button id="send-button">Send</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
         <!-- Contact Section -->
         <section id="contact" class="section">
             <div class="container mx-auto text-center">
@@ -390,8 +290,18 @@
                     Say Hello
                 </a>
                  <div class="flex justify-center space-x-6 mt-8">
-                    <a href="https://rishi-ragav.github.io" target="_blank" class="text-gray-400 hover:text-white transition">
+                    <!-- Add your profile URLs here -->
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="LinkedIn Profile">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="https://rishi-ragav.github.io" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="GitHub Profile">
                         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
+                    </a>
+                     <a href="#" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="HackerRank Profile">
+                        <svg class="w-8 h-8" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>HackerRank</title><path d="M9.737 17.91H6.973V9.498h2.764v8.412zM12 6.498c-.696 0-1.26-.564-1.26-1.26s.564-1.26 1.26-1.26c.696 0 1.26.564 1.26 1.26s-.564 1.26-1.26 1.26zm5.263 11.412h-2.764V9.498h2.764v8.412zM12 20.502c-.696 0-1.26-.564-1.26-1.26s.564-1.26 1.26-1.26c.696 0 1.26.564 1.26 1.26s-.564 1.26-1.26 1.26zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 19.5c-4.14 0-7.5-3.36-7.5-7.5s3.36-7.5 7.5-7.5 7.5 3.36 7.5 7.5-3.36 7.5-7.5 7.5z"/></svg>
+                    </a>
+                     <a href="#" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="CodeWars Profile">
+                        <svg class="w-8 h-8" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Codewars</title><path d="M12 0L1.604 4.237v10.339L12 24l10.396-9.424V4.237zM3.42 5.562L12 2.128l8.58 3.434v3.434L12 15.867l-8.58-6.869zm17.16 7.553L12 21.872l-8.58-8.757v-2.06l8.58 6.868 8.58-6.868z"/></svg>
                     </a>
                 </div>
             </div>
@@ -505,90 +415,6 @@
             .opacity-0 { opacity: 0; }
         `;
         document.head.appendChild(style);
-
-        // --- AI Chatbot Logic ---
-        const chatWindow = document.getElementById('chat-window');
-        const chatInput = document.getElementById('chat-input');
-        const sendButton = document.getElementById('send-button');
-
-        let chatHistory = [];
-        const resumeContext = `Rishi Ragav V is a B.Tech CSE-AI and ML Student at Presidency University (2020-2024). His skills include Programming (C, C++, Java, Python, MySQL) and Technical Skills (Regression, Deep Learning, Computer Vision, Reinforcement Learning, Machine Learning, Generative AI). He was a Microsoft Student Ambassador (2023-2024), Professional development director for the Rotaract Club (2022-2023), and Club Head for the OMEGA Club (2022-2023). His capstone project and publication is "Sentinel: Intelligent Multi Camera face Detection, recognition and Tracking System". He holds certificates in Software Development from Microsoft/LinkedIn, Qiskit Global Summer School, IBM Quantum Challenge, Applied Machine Learning, and NLP with Python. His email is rishiragav1@gmail.com and his GitHub is rishi-ragav.`;
-        
-        // Initial system message to set the context for the AI
-        chatHistory.push({
-            role: "system",
-            parts: [{ text: "You are a helpful AI assistant for Rishi Ragav V's portfolio website. Your role is to answer questions about Rishi based on his resume. Be friendly and professional. Here is his resume information: " + resumeContext }]
-        });
-
-
-        sendButton.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        function addMessage(role, text) {
-            const bubble = document.createElement('div');
-            bubble.classList.add('chat-bubble');
-            if (role === 'user') {
-                bubble.classList.add('user-bubble');
-            } else {
-                bubble.classList.add('ai-bubble');
-            }
-            bubble.textContent = text;
-            chatWindow.appendChild(bubble);
-            chatWindow.scrollTop = chatWindow.scrollHeight; // Auto-scroll to bottom
-        }
-
-        async function sendMessage() {
-            const userInput = chatInput.value.trim();
-            if (userInput === '') return;
-
-            addMessage('user', userInput);
-            chatInput.value = '';
-            sendButton.disabled = true;
-            sendButton.innerHTML = '<div class="loader"></div>';
-
-            chatHistory.push({ role: "user", parts: [{ text: userInput }] });
-
-            try {
-                const apiKey = ""; // API key will be handled by the environment
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const payload = { contents: chatHistory };
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`API request failed with status ${response.status}`);
-                }
-
-                const result = await response.json();
-                
-                let aiResponse = "Sorry, I couldn't get a response. Please try again.";
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    aiResponse = result.candidates[0].content.parts[0].text;
-                }
-                
-                addMessage('ai', aiResponse);
-                chatHistory.push({ role: "model", parts: [{ text: aiResponse }] });
-
-            } catch (error) {
-                console.error("Error calling Gemini API:", error);
-                addMessage('ai', "Sorry, something went wrong. Please check the console for details.");
-            } finally {
-                sendButton.disabled = false;
-                sendButton.innerHTML = 'Send';
-            }
-        }
-
     </script>
 </body>
 </html>
